@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import '@ionic/react/css/core.css';
+import { IonApp, IonButton, IonCard, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonTitle, setupIonicReact } from '@ionic/react';
+import { useEffect, useState } from 'react';
 
-function App() {
+setupIonicReact();
+const App = () => {
+
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  
+  const onClickHandler = () => {
+    fetch("http://192.168.1.6:8081/api/v1/person/")
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => setError(error.message))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <IonApp>
+        <IonHeader style={{ padding: "10px" }}>
+          <IonTitle>Garage RFID</IonTitle>
+        </IonHeader>
+        <IonContent style={{ padding: "10px" }}>
+          <IonButton onClick={onClickHandler}>
+            Carica
+          </IonButton>
+          {data.length > 0 && data.map(user => (
+            <IonCard>
+              <IonCardHeader>
+                <IonCardTitle>{user.name}</IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+          ))}
+          {error && <p>{error}</p>}
+        </IonContent>
+      </IonApp>
+    </>
+  )
 }
 
 export default App;
