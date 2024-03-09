@@ -7,7 +7,17 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'http'
 
+  },
+  plugins: {
+    "BluetoothLe": {
+      "displayStrings": {
+        "scanning": "Scanning...",
+        "cancel": "Cancel",
+        "availableDevices": "Available devices",
+        "noDeviceFound": "No device found"
+      }
+    }
   }
-};
+}
 
 export default config;

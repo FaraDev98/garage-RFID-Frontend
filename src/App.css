@@ -1,0 +1,26 @@
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.card-list-item {
+    border-bottom: solid 1px var(--ion-color-primary-shade);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.d-block {
+    display: block;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.header
+.toolbar {
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
